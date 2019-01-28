@@ -7,7 +7,7 @@ function readAll($e)
         echo "Id: " . $employee->getId() . "\n";
         echo "Ime: " . $employee->getFirstName() . "\n";
         echo "Prezime: " . $employee->getLastName() . "\n";
-        echo "Datum rođenja: " . $employee->getBirthDate() . "\n";
+        echo "Datum rođenja: " . $employee->getBirthDate()->format("d.m.Y") . "\n";
         echo "Spol: " . $employee->getGender() . "\n";
         echo "Primanja: " . $employee->getIncome() . "\n";
     }
@@ -28,39 +28,45 @@ function newEmployee()
 
 function generateString($string)
 {
-    echo 'Unesite ' . $string . ': ';
-    $s = readline();
-    $s = trim($s);
-
-   $s = ucfirst(strtolower($s));
-   return $s;
+    do {
+        echo 'Unesite ' . $string . ': ';
+        $s = readline();
+        $s = trim($s);
+    } while (strlen($s)==0 && !preg_match('/[^A-Za-z]+/', $s));
+    $s = ucfirst(strtolower($s));
+    return $s;
 
 }
 
 function generateDate()
 {
-    echo 'Datum rođenja: ';
-    $d = readline();
-
-    $date = DateTime::createFromFormat("d. m. Y",$d);
-
-    return $date;
-
+    do {
+        echo 'Datum rođenja: ';
+        $d = readline();
+        $d = str_replace(["-","/","'\'"], ".",$d);
+        $d = DateTime::createFromFormat("d.m.Y",$d);
+    } while ($d=="");
+    return $d;
 
 }
 
 function gender()
 {
-    echo 'Spol (m/f): ';
-    $g = readline();
+    do {
+        echo 'Spol (m/f): ';
+        $g = readline();
+        $g = trim($g);
+    } while (!($g == 'm' || $g == 'f'));
 
     return $g;
 }
 
 function income()
 {
-    echo 'Unesite mjesećna primanja: ';
-    $i = readline();
+    do {
+        echo 'Unesite mjesećna primanja: ';
+        $i = readline();
+    } while (!preg_match('/^(0|[1-9]\d*)(\,\d+)?$/', $i));
     return $i;
 }
 
