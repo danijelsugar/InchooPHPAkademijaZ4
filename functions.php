@@ -64,13 +64,23 @@ function income()
     return $i;
 }
 
-function editEmployee($id,$employees)
+function editEmployee($id,$e)
 {
     echo "Zaposlenici\n";
-    echo "Id: " . $employees[$id-1]->getId() . "\n";
-    echo "Ime: " . $employees[$id-1]->getFirstName() . "\n";
-    echo "Prezime: " . $employee->getLastName() . "\n";
-    echo "Datum rođenja: " . $employee->getBirthDate() . "\n";
-    echo "Spol: " . $employee->getGender() . "\n";
-    echo "Primanja: " . $employee->getIncome() . "\n";
+    echo "Id: " . $e[$id-1]->getId() . "\n";
+    echo "Ime: " . $e[$id-1]->getFirstName() . "\n";
+    echo "Prezime: " . $e[$id-1]->getLastName() . "\n";
+    echo "Datum rođenja: " . $e[$id-1]->getBirthDate() . "\n";
+    echo "Spol: " . $e[$id-1]->getGender() . "\n";
+    echo "Primanja: " . $e[$id-1]->getIncome() . "\n";
+    echo "Unesite nove vrijednosti\n";
+    $e[$id-1]->setFirstName(generateString('ime')) . "\n";
+    $e[$id-1]->setLastName(generateString('prezime')) . "\n";
+    $e[$id-1]->setBirthDate(generateDate()) . "\n";
+    $e[$id-1]->setGender(gender()) . "\n";
+    $e[$id-1]->setIncome(income()) . "\n";
+
+    return $e;
 }
+
+
