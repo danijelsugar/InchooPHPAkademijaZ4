@@ -48,7 +48,34 @@ while( true ) { //infinite while loop to keep showing menu
             deleteEmployee($id, $employees);
             break;
         case 5:
+            $choice2 = null;
+            statisticMenu();
+            while ($choice2 !== 'b') {
 
+                $choice2 = trim( fgets(STDIN) );
+
+                switch ($choice2) {
+                    case 1:
+                        echo "************ Ukupna starost ******************\n";
+                        break;
+                    case 2:
+                        echo "************ Prosječna starost ******************\n";
+                        break;
+                    case 3:
+                        echo "************ Ukupna primanja ******************\n";
+                        break;
+                    case 4:
+                        echo "************ Prosječna primanja ******************\n";
+                        break;
+                    case 'b':
+                        echo "Vraćanje nazad\n";
+                        printMenu();
+                        break;
+                    default:
+                        echo "Navedite valjani izbor\n";
+
+                }
+            }
             break;
         default:
             echo "Navedite valjani izbor\n";
@@ -74,10 +101,11 @@ function printMenu()
 function statisticMenu()
 {
     echo "************ Statistika ******************\n";
-    echo "7 - Ukupna starost\n";
-    echo "8 - Prosječna starost\n";
-    echo "9 - Ukupna primanja\n";
-    echo "10 - Prosječna primanja\n";
+    echo "1 - Ukupna starost\n";
+    echo "2 - Prosječna starost\n";
+    echo "3 - Ukupna primanja\n";
+    echo "4 - Prosječna primanja\n";
+    echo "b - nazad\n";
     echo "Odaberite broj: ";
 }
 
