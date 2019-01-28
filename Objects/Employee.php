@@ -1,14 +1,14 @@
 <?php
 
-class Person
+class Employee
 {
-    protected static $instance = 0;
-    protected $id = null;
-    protected $firstName;
-    protected $lastName;
-    protected $birthDate;
-    protected $gender;
-    protected $income;
+    private static $instance = 0;
+    private $id = null;
+    private $firstName;
+    private $lastName;
+    private $birthDate;
+    private $gender;
+    private $income;
 
     public function __construct()
     {
@@ -102,11 +102,13 @@ class Person
     {
         return $this->income;
     }
+
+    public function getAge()
+    {
+        $date = $this->birthDate;
+        $now = new DateTime('NOW');
+        $interval = $date->diff($now)->format('%a');
+        return intval($interval);
+    }
 }
 
-//$person = new Person(1,'Danijel', 'Sugar','30.04.1997','Musko');
-//$person->setIme = 'Pero';
-//$person->setPrezime = 'Perić';
-
-
-//echo $person->getFirstName() . ' ' . $person->getLastName() . ' ' . $person->getBirthDate();
