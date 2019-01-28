@@ -1,6 +1,17 @@
 <?php
 
 
+function readAll($e)
+{
+    foreach ($e as $employee) {
+        echo "Id: " . $employee->getId() . "\n";
+        echo "Ime: " . $employee->getFirstName() . "\n";
+        echo "Prezime: " . $employee->getLastName() . "\n";
+        echo "Datum rođenja: " . $employee->getBirthDate() . "\n";
+        echo "Spol: " . $employee->getGender();
+        echo "Primanja: " . $employee->getIncome();
+    }
+}
 
 function newEmployee()
 {
