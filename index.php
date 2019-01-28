@@ -1,6 +1,10 @@
 <?php
 
-require 'Objects/Person.php';
+
+require_once 'Objects/Employee.php';
+require_once 'functions.php';
+$employees[] = array();
+
 
 while( true ) { //infinite while loop to keep showing menu
 
@@ -17,28 +21,19 @@ while( true ) { //infinite while loop to keep showing menu
         break;
     }
 
+
     switch ($choice) {
         case 1:
-            echo "Pregled zaposlenika\n";
+            echo "************ Pregled zaposlenika ******************\n";
+
             break;
         case 2:
-            echo "Unos zaposlenika:\n";
-            echo "Ime: ";
-            $firstName = fgets(STDIN);
-            echo $firstName;
-            echo "Prezime: ";
-            $lastName = fgets(STDIN);
-            echo $lastName;
-            echo "Datum rođenja: ";
-            $birthDate = fgets(STDIN);
-            echo $birthDate;
-            echo "Spol: ";
-            $gender = fgets(STDIN);
-            echo $gender;
-            $person = new Person($firstName,$lastName,$birthDate,$gender);
-            echo $person->getId() . ' ' . $person->getFirstName() . ' ' . $person->getLastName() . ' ' .
-                $person->getBirthDate() . ' ' . $person->getGender();
-            print_r($person);
+            echo "************ Unos zaposlenika ******************\n";
+            if (empty($employees[0])) {
+                $employees[0] = newEmployee();
+            } else {
+                $employees[] = newEmployee();
+            }
             break;
         case 3:
             echo "Promjena";
@@ -52,6 +47,7 @@ while( true ) { //infinite while loop to keep showing menu
         default:
             echo "Navedite valjani izbor\n";
     }
+
 
 }
 
