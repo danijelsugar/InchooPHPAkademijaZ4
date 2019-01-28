@@ -83,4 +83,18 @@ function editEmployee($id,$e)
     return $e;
 }
 
-
+function deleteEmployee($id, &$e)
+{
+    echo 'Jeste li sigurni da želite obrisati osobu s id = ' . $id . ' (y/n) ';
+    $response = readline();
+    $response = trim($response);
+    //print_r($e);
+    if ($response === 'y') {
+        unset($e[$id-1]);
+        return $e;
+    } elseif ($response === 'n') {
+        return $e;
+    } else {
+        echo "Pogrešan unos\n";
+    }
+}
