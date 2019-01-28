@@ -4,7 +4,7 @@
 require_once 'Objects/Employee.php';
 require_once 'functions.php';
 $employees[] = array();
-
+print_r($employees);
 
 while( true ) { //infinite while loop to keep showing menu
 
@@ -42,10 +42,13 @@ while( true ) { //infinite while loop to keep showing menu
             editEmployee($id,$employees);
             break;
         case 4:
-            echo "Brisanje";
+            echo "************ Brisanje ******************\n";
+            echo "Unesite id korisnika kojeg želite izbrisati: ";
+            $id = readline();
+            deleteEmployee($id, $employees);
             break;
         case 5:
-            statisticMenu();
+
             break;
         default:
             echo "Navedite valjani izbor\n";
@@ -53,6 +56,7 @@ while( true ) { //infinite while loop to keep showing menu
 
 
 }
+
 
 function printMenu()
 {
