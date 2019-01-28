@@ -25,7 +25,7 @@ while( true ) { //infinite while loop to keep showing menu
     switch ($choice) {
         case 1:
             echo "************ Pregled zaposlenika ******************\n";
-
+            readAll($employees);
             break;
         case 2:
             echo "************ Unos zaposlenika ******************\n";
@@ -36,7 +36,7 @@ while( true ) { //infinite while loop to keep showing menu
             }
             break;
         case 3:
-            echo "Promjena";
+            echo "************ Promjena ******************\n";
             break;
         case 4:
             echo "Brisanje";
