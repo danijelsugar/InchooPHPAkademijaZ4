@@ -146,13 +146,32 @@ function averageMaleFemale($e)
             $m++;
         }
 
+        if ($rez->getGender() === 'f'){
+            $incomeFemale += $rez->getIncome();
+            $f++;
+        }
+
     }
 
     if ($m === 0){
-        $averageMale = "Nema unesenih muškaraca";
+        $averageMale = 0;
     } else {
         $averageMale = $incometMale / $m;
     }
 
-    echo "Muškarci prosječno zarađuju: " . $averageMale;
+    if ($f === 0) {
+        $averageFemale = 0;
+    } else {
+        $averageFemale = $incomeFemale / $f;
+    }
+
+    echo "Muškarci prosječno zarađuju: " . str_replace('.',',',$averageMale) . "kn\n";
+    echo "Žene prosječno zarađuju: " . str_replace('.',',',$averageFemale) . "kn\n";
+    //echo ($averageFemale - $averageMale >0) ? "Žene zarađuju " . $averageFemale-$averageMale .
+        //"kune više od muškaraca" : "Muškarci zarađuju " . $averageMale-$averageFemale . "kune od žena";
+    if($averageFemale-$averageMale>0){
+        echo "Žene zarađuju " . str_replace('.',',',$averageFemale-$averageMale) . " kn više od muškaraca\n";
+    } else {
+        echo "muškarci zarađuju " . str_replace('.',',',$averageMale-$averageFemale) . " kn više d žena\n";
+    }
 }
