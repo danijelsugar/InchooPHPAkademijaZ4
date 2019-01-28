@@ -56,7 +56,7 @@ function gender()
         echo 'Spol (m/f): ';
         $g = readline();
         $g = trim($g);
-    } while (!($g == 'm' || $g == 'f'));
+    } while ($g != 'm' && $g != 'f');
 
     return $g;
 }
@@ -103,4 +103,56 @@ function deleteEmployee($id, &$e)
     } else {
         echo "Pogrešan unos\n";
     }
+}
+
+function totalAge($e)
+{
+    $date = 0;
+    foreach ($e as $rez) {
+        $date += $rez->getAge();
+    }
+    $year = ($date / 365);
+    $year = floor($year);
+    $date = $date - $year * 365;
+    $month = ($date / 30);
+    $month = floor($month);
+    $days = ($date % 30);
+    $str = $year . " g. " . $month . " m. " . $days." d.";
+    return $str;
+}
+
+function averageAge($e)
+{
+    $date = 0;
+    foreach ($e as $rez) {
+        $date += $rez->getAge();
+    }
+    $year = $date / 365;
+    $year /= count($e);
+    $year = floor($year);
+    return "Prosjecna starost: " . $year;
+}
+
+function averageMaleFemale($e)
+{
+    $m = 0;
+    $f= 0;
+    $incometMale = 0;
+    $incomeFemale = 0;
+
+    foreach ($e as $rez) {
+        if ($rez->getGender() === 'm'){
+            $incometMale += $rez->getIncome();
+            $m++;
+        }
+
+    }
+
+    if ($m === 0){
+        $averageMale = "Nema unesenih muškaraca";
+    } else {
+        $averageMale = $incometMale / $m;
+    }
+
+    echo "Muškarci prosječno zarađuju: " . $averageMale;
 }
