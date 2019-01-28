@@ -8,8 +8,8 @@ function readAll($e)
         echo "Ime: " . $employee->getFirstName() . "\n";
         echo "Prezime: " . $employee->getLastName() . "\n";
         echo "Datum rođenja: " . $employee->getBirthDate() . "\n";
-        echo "Spol: " . $employee->getGender();
-        echo "Primanja: " . $employee->getIncome();
+        echo "Spol: " . $employee->getGender() . "\n";
+        echo "Primanja: " . $employee->getIncome() . "\n";
     }
 }
 
@@ -29,7 +29,7 @@ function newEmployee()
 function generateString($string)
 {
     echo 'Unesite ' . $string . ': ';
-    $s = fgets(STDIN);
+    $s = readline();
     $s = trim($s);
 
    $s = ucfirst(strtolower($s));
@@ -40,10 +40,9 @@ function generateString($string)
 function generateDate()
 {
     echo 'Datum rođenja: ';
-    $d = fgets(STDIN);
+    $d = readline();
 
-    $date = DateTime::createFromFormat("dd. MM. YYYY",$d);
-
+    $date = DateTime::createFromFormat("d. m. Y",$d);
 
     return $date;
 
@@ -53,7 +52,7 @@ function generateDate()
 function gender()
 {
     echo 'Spol (m/f): ';
-    $g = fgets(STDIN);
+    $g = readline();
 
     return $g;
 }
@@ -61,6 +60,17 @@ function gender()
 function income()
 {
     echo 'Unesite mjesećna primanja: ';
-    $i = fgets(STDIN);
+    $i = readline();
     return $i;
+}
+
+function editEmployee($id,$employees)
+{
+    echo "Zaposlenici\n";
+    echo "Id: " . $employees[$id-1]->getId() . "\n";
+    echo "Ime: " . $employees[$id-1]->getFirstName() . "\n";
+    echo "Prezime: " . $employee->getLastName() . "\n";
+    echo "Datum rođenja: " . $employee->getBirthDate() . "\n";
+    echo "Spol: " . $employee->getGender() . "\n";
+    echo "Primanja: " . $employee->getIncome() . "\n";
 }
