@@ -3,8 +3,8 @@
 
 require_once 'Objects/Employee.php';
 require_once 'functions.php';
-$employees[] = array();
-print_r($employees);
+$employees = [];
+
 
 while( true ) { //infinite while loop to keep showing menu
 
@@ -25,7 +25,11 @@ while( true ) { //infinite while loop to keep showing menu
     switch ($choice) {
         case 1:
             echo "************ Pregled zaposlenika ******************\n";
-            readAll($employees);
+            if (count($employees) === 0) {
+                echo "Nema unesenih zaposlenika!\n";
+            } else {
+                readAll($employees);
+            }
             break;
         case 2:
             echo "************ Unos zaposlenika ******************\n";
@@ -37,15 +41,24 @@ while( true ) { //infinite while loop to keep showing menu
             break;
         case 3:
             echo "************ Promjena ******************\n";
-            echo "Unesite id korisnika kojeg želite izmjeniti: ";
-            $id = readline();
-            editEmployee($id,$employees);
+            if (count($employees) === 0) {
+                echo "Nema unesenih zaposlenika!\n";
+            } else {
+                echo "Unesite id korisnika kojeg želite izmjeniti: ";
+                $id = readline();
+                editEmployee($id,$employees);
+            }
+
             break;
         case 4:
             echo "************ Brisanje ******************\n";
-            echo "Unesite id korisnika kojeg želite izbrisati: ";
-            $id = readline();
-            deleteEmployee($id, $employees);
+            if (count($employees) === 0) {
+                echo "Nema unesenih zaposlenika!\n";
+            } else {
+                echo "Unesite id korisnika kojeg želite izbrisati: ";
+                $id = readline();
+                deleteEmployee($id, $employees);
+            }
             break;
         case 5:
             $choice2 = null;
@@ -57,15 +70,30 @@ while( true ) { //infinite while loop to keep showing menu
                 switch ($choice2) {
                     case 1:
                         echo "************ Ukupna starost ******************\n";
+                        if (count($employees) === 0) {
+                            echo "Nema unesenih zaposlenika!\n";
+                        } else {
+                            echo totalAge($employees) . "\n";
+                        }
                         break;
                     case 2:
                         echo "************ Prosječna starost ******************\n";
+                        if (count($employees) === 0) {
+                            echo "Nema unesenih zaposlenika!\n";
+                        } else {
+                            echo averageAge($employees) . "\n";
+                        }
                         break;
                     case 3:
                         echo "************ Ukupna primanja ******************\n";
                         break;
                     case 4:
                         echo "************ Prosječna primanja ******************\n";
+                        if (count($employees) === 0) {
+                            echo "Nema unesenih zaposlenika!\n";
+                        } else {
+                            echo averageMaleFemale($employees) . "\n";
+                        }
                         break;
                     case 'b':
                         echo "Vraćanje nazad\n";
