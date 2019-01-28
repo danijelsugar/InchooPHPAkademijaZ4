@@ -37,6 +37,9 @@ while( true ) { //infinite while loop to keep showing menu
             break;
         case 3:
             echo "************ Promjena ******************\n";
+            echo "Unesite id korisnika kojeg želite izmjeniti: ";
+            $id = readline();
+            editEmployee($id,$employees);
             break;
         case 4:
             echo "Brisanje";
