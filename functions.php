@@ -172,6 +172,31 @@ function averageMaleFemale($e)
     if($averageFemale-$averageMale>0){
         echo "Žene zarađuju " . str_replace('.',',',$averageFemale-$averageMale) . " kn više od muškaraca\n";
     } else {
-        echo "muškarci zarađuju " . str_replace('.',',',$averageMale-$averageFemale) . " kn više d žena\n";
+        echo "muškarci zarađuju " . str_replace('.',',',$averageMale-$averageFemale) . " kn više od žena\n";
     }
+}
+
+function totalIncome($e)
+{
+    $a = 0;
+    $b = 0;
+    $c = 0;
+    $d = 0;
+    foreach ($e as $rez) {
+        $age = $rez->getAge()/365;
+        if ($age<20) {
+            $a += $rez->getIncome();
+        } elseif ($age<30) {
+            $b += $rez->getIncome();
+        } elseif ($age<40) {
+            $c += $rez->getIncome();
+        } else {
+            $d += $rez->getIncome();
+        }
+    }
+
+    echo "Ukupna primanja osoba mlađih od 20 godina: " . $a . "kn\n";
+    echo "Ukupna primanja osoba mlađih od 30 godina: " . $b . "kn\n";
+    echo "Ukupna primanja osoba mlađih od 40 godina: " . $c . "kn\n";
+    echo "Ukupna primanja osoba sa 40 godina ili vise: : " . $d . "kn\n";
 }

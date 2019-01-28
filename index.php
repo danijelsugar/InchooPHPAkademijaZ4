@@ -86,6 +86,11 @@ while( true ) { //infinite while loop to keep showing menu
                         break;
                     case 3:
                         echo "************ Ukupna primanja ******************\n";
+                        if (count($employees) === 0) {
+                            echo "Nema unesenih zaposlenika!\n";
+                        } else {
+                            echo totalIncome($employees);
+                        }
                         break;
                     case 4:
                         echo "************ Prosječna primanja ******************\n";
