@@ -67,7 +67,7 @@ while( true ) { //infinite while loop to keep showing menu
                     if($rez->getId() == $id) {
                         deleteEmployee($id, $employees);
                     } else {
-                        echo "Nema zapolenika s tim id-om";
+                        echo "Nema zapolenika s tim id-om\n";
                     }
                 }
 

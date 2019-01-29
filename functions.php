@@ -162,20 +162,20 @@ function totalIncome($e)
     foreach ($e as $rez) {
         $age = $rez->getAge()/365;
         if ($age<20) {
-            $a = number_format($a + $rez->getIncome(),'2',',','');
+            $a = $a + $rez->getIncome();
         } elseif ($age<30) {
-            $b = number_format($b + $rez->getIncome(),'2',',','');
+            $b = $b + $rez->getIncome();
         } elseif ($age<40) {
-            $c = number_format($c + $rez->getIncome(),'2',',','');
+            $c = $c + $rez->getIncome();
         } else {
-            $d = number_format($d + $rez->getIncome(),'2',',','');
+            $d = $d + $rez->getIncome();
         }
     }
 
-    echo "Ukupna primanja osoba mlađih od 20 godina: " . $a . "kn\n";
-    echo "Ukupna primanja osoba mlađih od 30 godina: " . $b . "kn\n";
-    echo "Ukupna primanja osoba mlađih od 40 godina: " . $c . "kn\n";
-    echo "Ukupna primanja osoba sa 40 godina ili vise: : " . $d . "kn\n";
+    echo "Ukupna primanja osoba mlađih od 20 godina: " . number_format($a,2) . "kn\n";
+    echo "Ukupna primanja osoba mlađih od 30 godina: " . number_format($b,2) . "kn\n";
+    echo "Ukupna primanja osoba mlađih od 40 godina: " . number_format($c,2) . "kn\n";
+    echo "Ukupna primanja osoba sa 40 godina ili vise: : " . number_format($d,2) . "kn\n";
 }
 
 /**
@@ -207,13 +207,13 @@ function averageMaleFemale($e)
     } else {
         $averageFemale = $incomeFemale / $f;
     }
-    echo "Muškarci prosječno zarađuju: " . str_replace('.',',',$averageMale) . "kn\n";
-    echo "Žene prosječno zarađuju: " . str_replace('.',',',$averageFemale) . "kn\n";
+    echo "Muškarci prosječno zarađuju: " . str_replace('.',',',number_format($averageMale,2)) . "kn\n";
+    echo "Žene prosječno zarađuju: " . str_replace('.',',',number_format($averageFemale,2)) . "kn\n";
 
     if($averageFemale-$averageMale>0){
-        echo "Žene zarađuju " . str_replace('.',',',$averageFemale-$averageMale) . " kn više od muškaraca\n";
+        echo "Žene zarađuju " . str_replace('.',',',number_format($averageFemale-$averageMale,2)) . " kn više od muškaraca\n";
     } else {
-        echo "muškarci zarađuju " . str_replace('.',',',$averageMale-$averageFemale) . " kn više od žena\n";
+        echo "muškarci zarađuju " . str_replace('.',',',number_format($averageMale-$averageFemale,2)) . " kn više od žena\n";
     }
 }
 
