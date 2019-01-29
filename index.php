@@ -46,9 +46,15 @@ while( true ) { //infinite while loop to keep showing menu
             } else {
                 echo "Unesite id korisnika kojeg želite izmjeniti: ";
                 $id = readline();
-                editEmployee($id,$employees);
-            }
+                foreach ($employees as $rez) {
+                    if($rez->getId()== $id){
+                        editEmployee($id,$employees);
+                    } else {
+                        echo "Nema zaposlenika s tim id-om\n";
+                    }
+                }
 
+            }
             break;
         case 4:
             echo "************ Brisanje ******************\n";
@@ -57,7 +63,14 @@ while( true ) { //infinite while loop to keep showing menu
             } else {
                 echo "Unesite id korisnika kojeg želite izbrisati: ";
                 $id = readline();
-                deleteEmployee($id, $employees);
+                foreach ($employees as $rez) {
+                    if($rez->getId() == $id) {
+                        deleteEmployee($id, $employees);
+                    } else {
+                        echo "Nema zapolenika s tim id-om";
+                    }
+                }
+
             }
             break;
         case 5:

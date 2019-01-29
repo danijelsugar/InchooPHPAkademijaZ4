@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * @param $e Employee[]
+ */
 function readAll($e)
 {
     foreach ($e as $employee) {
@@ -71,13 +73,18 @@ function income()
     return $i;
 }
 
+/**
+ * @param $id
+ * @param $e Employee[]
+ * @return mixed
+ */
 function editEmployee($id,$e)
 {
     echo "Zaposlenici\n";
     echo "Id: " . $e[$id-1]->getId() . "\n";
     echo "Ime: " . $e[$id-1]->getFirstName() . "\n";
     echo "Prezime: " . $e[$id-1]->getLastName() . "\n";
-    echo "Datum rođenja: " . $e[$id-1]->getBirthDate() . "\n";
+    echo "Datum rođenja: " . $e[$id-1]->getBirthDate()->format("d.m.Y") . "\n";
     echo "Spol: " . $e[$id-1]->getGender() . "\n";
     echo "Primanja: " . $e[$id-1]->getIncome() . "\n";
     echo "Unesite nove vrijednosti\n";
@@ -89,6 +96,7 @@ function editEmployee($id,$e)
 
     return $e;
 }
+
 
 function deleteEmployee($id, &$e)
 {
@@ -106,6 +114,10 @@ function deleteEmployee($id, &$e)
     }
 }
 
+/**
+ * @param $e Employee[]
+ * @return string
+ */
 function totalAge($e)
 {
     $date = 0;
@@ -122,6 +134,10 @@ function totalAge($e)
     return $str;
 }
 
+/**
+ * @param $e Employee[]
+ * @return string
+ */
 function averageAge($e)
 {
     $date = 0;
@@ -134,6 +150,9 @@ function averageAge($e)
     return "Prosjecna starost: " . $year;
 }
 
+/**
+ * @param $e Employee[]
+ */
 function totalIncome($e)
 {
     $a = 0;
@@ -143,13 +162,13 @@ function totalIncome($e)
     foreach ($e as $rez) {
         $age = $rez->getAge()/365;
         if ($age<20) {
-            $a = number_format($a + $rez->getIncome(),'2',',','.');
+            $a = number_format($a + $rez->getIncome(),'2',',','');
         } elseif ($age<30) {
-            $b = number_format($b + $rez->getIncome(),'2',',','.');
+            $b = number_format($b + $rez->getIncome(),'2',',','');
         } elseif ($age<40) {
-            $c = number_format($c + $rez->getIncome(),'2',',','.');
+            $c = number_format($c + $rez->getIncome(),'2',',','');
         } else {
-            $d = number_format($d + $rez->getIncome(),'2',',','.');
+            $d = number_format($d + $rez->getIncome(),'2',',','');
         }
     }
 
@@ -159,41 +178,38 @@ function totalIncome($e)
     echo "Ukupna primanja osoba sa 40 godina ili vise: : " . $d . "kn\n";
 }
 
+/**
+ * @param $e Employee[]
+ */
 function averageMaleFemale($e)
 {
     $m = 0;
     $f= 0;
     $incomeMale = 0;
     $incomeFemale = 0;
-
     foreach ($e as $rez) {
         if ($rez->getGender() === 'm'){
             $incomeMale += $rez->getIncome();
             $m++;
         }
-
         if ($rez->getGender() === 'f'){
             $incomeFemale += $rez->getIncome();
             $f++;
         }
-
     }
-
     if ($m === 0){
         $averageMale = 0;
     } else {
         $averageMale = $incomeMale / $m;
     }
-
     if ($f === 0) {
         $averageFemale = 0;
     } else {
         $averageFemale = $incomeFemale / $f;
     }
-
     echo "Muškarci prosječno zarađuju: " . str_replace('.',',',$averageMale) . "kn\n";
     echo "Žene prosječno zarađuju: " . str_replace('.',',',$averageFemale) . "kn\n";
-    
+
     if($averageFemale-$averageMale>0){
         echo "Žene zarađuju " . str_replace('.',',',$averageFemale-$averageMale) . " kn više od muškaraca\n";
     } else {
